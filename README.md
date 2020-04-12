@@ -72,5 +72,31 @@ docker run -d \
 d0whc3r/ubuntu-nfs-ganesha \
 ```
 
+### Docker compose
+```yaml
+version: "3"
+services:
+  nfs:
+    image: d0whc3r/ubuntu-nfs-ganesha
+    restart: unless-stopped
+    volumes:
+      - /path/to/nfs/folder:/export
+    cap_add:
+      - SYS_ADMIN
+      - SETPCAP
+      - DAC_READ_SEARCH
+    environment:
+      - GANESHA_EXPORT="/export"
+      - GANESHA_NFS_PROTOCOLS="4"
+      - GANESHA_TRANSPORTS="TCP,UDP"
+    ports:
+       - 111:111
+       - 111:111/udp
+       - 2049:2049
+       - 20048:20048/udp
+       - 662:662
+       - 38465-38467:38465-38467
+```
+
 ### Credits
 * [janeczku/docker-nfs-ganesha](https://github.com/janeczku/docker-nfs-ganesha)
