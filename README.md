@@ -69,7 +69,7 @@ NFSV4
 docker run -d \
 --name nfs \
 -v /local/export/path:/export \
-d0whc3r/ubuntu-nfs-ganesha \
+dhpower/nfs-ganesha \
 ```
 
 ### Docker compose
