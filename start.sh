@@ -5,13 +5,13 @@ set -e
 : ${GANESHA_LOGFILE:="/dev/stdout"}
 : ${GANESHA_CONFIGFILE:="/etc/ganesha/ganesha.conf"}
 : ${GANESHA_OPTIONS:="-N NIV_EVENT"} # NIV_DEBUG
-: ${GANESHA_EPOCH:=""}
-: ${GANESHA_EXPORT_ID:="99"}
-: ${GANESHA_EXPORT:="/export"}
-: ${GANESHA_PSEUDO_PATH:="/"}
-: ${GANESHA_ACCESS:="*"}
-: ${GANESHA_ROOT_ACCESS:="*"}
-: ${GANESHA_NFS_PROTOCOLS:="4"}
+: ${GANESHA_EPOCH:=}
+: ${GANESHA_EXPORT_ID:=99}
+: ${GANESHA_EXPORT:=/export}
+: ${GANESHA_PSEUDO_PATH:=/}
+: ${GANESHA_ACCESS:=*}
+: ${GANESHA_ROOT_ACCESS:=*}
+: ${GANESHA_NFS_PROTOCOLS:=4}
 : ${GANESHA_TRANSPORTS:="UDP,TCP"}
 : ${GANESHA_BOOTSTRAP_CONFIG:="yes"}
 
@@ -33,14 +33,14 @@ EXPORT
 		# Access control options
 		Access_Type = RW;
 		Squash = No_Root_Squash;
-		Root_Access = "${GANESHA_ROOT_ACCESS}";
-		Access = "${GANESHA_ACCESS}";
+		Root_Access = ${GANESHA_ROOT_ACCESS};
+		Access = ${GANESHA_ACCESS};
 
 		# NFS protocol options
-		Transports = "${GANESHA_TRANSPORTS}";
-		Protocols = "${GANESHA_NFS_PROTOCOLS}";
+		Transports = ${GANESHA_TRANSPORTS};
+		Protocols = ${GANESHA_NFS_PROTOCOLS};
 
-		SecType = "sys";
+		SecType = sys;
 
 		# Exporting FSAL
 		FSAL {
