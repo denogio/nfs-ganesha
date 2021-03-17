@@ -4,9 +4,9 @@ A user mode nfs server implemented in a container. Supports serving NFS (v3, 4.0
 Currently generates a config for just serving a local path over nfs. However supplying `GANESHA_CONFIGFILE` would allow ganesha to be pointed to a bind mounted config file for other FASLs/more advanced configuration.
 
 ### Versions
-* ganesha: 2.6.0-2
-* glusterfs-common: 3.13.2
-
+* ganesha: 3.2-3
+* glusterfs-common: 8.0
+* 
 ### Environment Variables
 * `GANESHA_LOGFILE`: log file location
 * `GANESHA_CONFIGFILE`: location of ganesha.conf
@@ -37,14 +37,14 @@ EXPORT
 		# Access control options
 		Access_Type = RW;
 		Squash = No_Root_Squash;
-		Root_Access = "${GANESHA_ROOT_ACCESS}";
-		Access = "${GANESHA_ACCESS}";
+		Root_Access = ${GANESHA_ROOT_ACCESS};
+		Access = ${GANESHA_ACCESS};
 
 		# NFS protocol options
-		Transports = "${GANESHA_TRANSPORTS}";
-		Protocols = "${GANESHA_NFS_PROTOCOLS}";
+		Transports = ${GANESHA_TRANSPORTS};
+		Protocols = ${GANESHA_NFS_PROTOCOLS};
 
-		SecType = "sys";
+		SecType = sys;
 
 		# Exporting FSAL
 		FSAL {
@@ -77,7 +77,7 @@ d0whc3r/ubuntu-nfs-ganesha \
 version: "3"
 services:
   nfs:
-    image: d0whc3r/ubuntu-nfs-ganesha
+    image: dhpower/nfs-ganesha
     restart: unless-stopped
     volumes:
       - /path/to/nfs/folder:/export
